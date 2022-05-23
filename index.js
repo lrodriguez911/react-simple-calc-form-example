@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-
+console.log(useState)
+console.log(useState(0))
 function AddForm() {
   const [sum, setSum] = useState(0);
   const [num, setNum] = useState(0);
 
   function handleChange(e) {
     setNum(e.target.value);
+  }
+  function handleReset() {
+    setNum(0)
+    setSum(0);
   }
 
   function handleSubmit(e) {
@@ -18,6 +23,7 @@ function AddForm() {
   return <form onSubmit={handleSubmit}>
   <input type="number" value={num} onChange={handleChange} />
   <input type="submit" value="Add" />
+  <button onClick={handleReset}>Reset</button>
   <p> Sum is {sum} </p>
   </form>;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
+
 console.log(useState)
 console.log(useState(0))
 function AddForm() {
@@ -27,9 +28,33 @@ function AddForm() {
   <p> Sum is {sum} </p>
   </form>;
 }
+function RestForm() {
+  const [res, setRest] = useState(0);
+  const [num, setNum] = useState(0);
 
+  function handleChange(e) {
+    setNum(e.target.value);
+  }
+  function handleReset() {
+    setNum(0)
+    setRest(0);
+  }
+
+  function handleSubmit(e) {
+    setRest(res - Number(num));
+    e.preventDefault();
+  }
+
+  return <form onSubmit={handleSubmit}>
+  <input type="number" value={num} onChange={handleChange} />
+  <input type="submit" value="Add" />
+  <button onClick={handleReset}>Reset</button>
+  <p> Rest is {sum} </p>
+  </form>;
+}
+const rest = <RestForm/>
 const el = <AddForm />; 
 ReactDOM.render(
-  el, 
+  (el,rest), 
   document.getElementById('root')
 );
